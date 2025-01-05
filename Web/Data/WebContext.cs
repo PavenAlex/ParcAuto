@@ -15,5 +15,6 @@ namespace Web.Data
         }
 
         public DbSet<ParcAuto.Models.Vehicle> Vehicles { get; set; } = default!;
+        public DbSet<ParcAuto.Models.Client> Clients { get; set; } = default!;
     }
 }

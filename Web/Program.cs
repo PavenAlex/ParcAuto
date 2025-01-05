@@ -9,6 +9,10 @@ builder.Services.AddHttpClient<VehicleService>(client =>
 {
     client.BaseAddress = new Uri("https://localhost:7280/");
 });
+builder.Services.AddHttpClient<ClientService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7280/");
+});
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<WebContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("WebContext") ?? throw new InvalidOperationException("Connection string 'WebContext' not found.")));
