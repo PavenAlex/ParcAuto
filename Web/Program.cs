@@ -1,7 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Web.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpClient();
+builder.Services.AddHttpClient<VehicleService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7280/");
+});
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<WebContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("WebContext") ?? throw new InvalidOperationException("Connection string 'WebContext' not found.")));
 
 var app = builder.Build();
 

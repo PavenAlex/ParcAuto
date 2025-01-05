@@ -1,0 +1,59 @@
+﻿@page
+@model Web.Vehicles.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Vehicle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Vehicle.Marca" class="control-label"></label>
+                <input asp-for="Vehicle.Marca" class="form-control" />
+                <span asp-validation-for="Vehicle.Marca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vehicle.Model" class="control-label"></label>
+                <input asp-for="Vehicle.Model" class="form-control" />
+                <span asp-validation-for="Vehicle.Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vehicle.An_Fabricatie" class="control-label"></label>
+                <input asp-for="Vehicle.An_Fabricatie" class="form-control" />
+                <span asp-validation-for="Vehicle.An_Fabricatie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vehicle.Tip_Combustibil" class="control-label"></label>
+                <input asp-for="Vehicle.Tip_Combustibil" class="form-control" />
+                <span asp-validation-for="Vehicle.Tip_Combustibil" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vehicle.Stare" class="control-label"></label>
+                <input asp-for="Vehicle.Stare" class="form-control" />
+                <span asp-validation-for="Vehicle.Stare" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vehicle.Kilometraj" class="control-label"></label>
+                <input asp-for="Vehicle.Kilometraj" class="form-control" />
+                <span asp-validation-for="Vehicle.Kilometraj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
