@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Mobil.MainPage"
+    Title="Pagina Principală">
+
+    <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
+        <Label Text="Bun venit!" FontSize="24" HorizontalOptions="Center" />
+
+        <Button Text="Lista Vehicule"
+                FontSize="18"
+                Clicked="OnVehiclesButtonClicked" />
+
+        <Button Text="Lista Facturi"
+                FontSize="18"
+                Clicked="OnFacturiButtonClicked" />
+    </VerticalStackLayout>
+</ContentPage>
+

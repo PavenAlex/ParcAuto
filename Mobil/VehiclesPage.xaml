@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Mobil.Models"
+             x:Class="Mobil.VehiclesPage"
+             Title="Vehicule">
+
+    <!-- Bara de instrumente pentru adăugarea unui vehicul nou -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Adaugă vehicul"
+                     Clicked="OnAddVehicleClicked" />
+    </ContentPage.ToolbarItems>
+
+    <!-- Listă de vehicule -->
+    <CollectionView x:Name="VehiclesList" SelectionMode="Single">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Padding="10" Spacing="5">
+                    <StackLayout HorizontalOptions="StartAndExpand">
+                        <Label Text="{Binding Marca, StringFormat='Marca: {0}'}" FontSize="18" />
+                        <Label Text="{Binding Model, StringFormat='Model: {0}'}" FontSize="16" />
+                        <Label Text="{Binding An_Fabricatie, StringFormat='An fabricație: {0}'}" FontSize="14" />
+                        <Label Text="{Binding Tip_Combustibil, StringFormat='Combustibil: {0}'}" FontSize="14" />
+                        <Label Text="{Binding Stare, StringFormat='Stare: {0}'}" FontSize="14" />
+                        <Label Text="{Binding Kilometraj, StringFormat='Kilometraj: {0}'}" FontSize="14" />
+                    </StackLayout>
+                    <Button Text="Rezervă"
+                        BackgroundColor="LightBlue"
+                        Command="{Binding ReserveCommand}"
+                        CommandParameter="{Binding .}" />
+                    <Button Text="Editează"
+                            BackgroundColor="LightGreen"
+                            Clicked="OnEditVehicleClicked"
+                            CommandParameter="{Binding .}" />
+                    <Button Text="Șterge"
+                            BackgroundColor="LightCoral"
+                            Clicked="OnDeleteVehicleClicked"
+                            CommandParameter="{Binding .}" />
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

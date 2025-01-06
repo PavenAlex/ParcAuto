@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobil.FacturiPage"
+             Title="Facturi">
+
+    <CollectionView x:Name="FacturiList" SelectionMode="None">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Padding="10">
+                    <Label Text="{Binding ID_Factura, StringFormat='ID Factura: {0}'}" FontSize="18" />
+                    <Label Text="{Binding ID_Rezervare, StringFormat='ID Rezervare: {0}'}" FontSize="16" />
+                    <Label Text="{Binding Data_Emitere, StringFormat='Data Emiterii: {0:dd/MM/yyyy}'}" FontSize="14" />
+                    <Label Text="{Binding Suma_Totala, StringFormat='Suma Totala: {0:C}'}" FontSize="14" />
+                    <Label Text="{Binding Status_Plata, StringFormat='Status: {0}'}" FontSize="14" />
+                    <Button Text="Șterge"
+                            BackgroundColor="LightCoral"
+                            Clicked="OnDeleteFacturaClicked"
+                            CommandParameter="{Binding ID_Factura}" />
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
