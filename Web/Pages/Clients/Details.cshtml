@@ -1,0 +1,55 @@
+﻿@page
+@model Web.Pages.Clients.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.Nume)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.Nume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.Prenume)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.Prenume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.Telefon)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.Telefon)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.CNP)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.CNP)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.Data_Inregistrarii)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.Data_Inregistrarii)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Client.ID_Client">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -1,0 +1,60 @@
+﻿@page
+@model Web.Pages.Clients.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Client</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Client.ID_Client" />
+            <div class="form-group">
+                <label asp-for="Client.Nume" class="control-label"></label>
+                <input asp-for="Client.Nume" class="form-control" />
+                <span asp-validation-for="Client.Nume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Prenume" class="control-label"></label>
+                <input asp-for="Client.Prenume" class="form-control" />
+                <span asp-validation-for="Client.Prenume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Telefon" class="control-label"></label>
+                <input asp-for="Client.Telefon" class="form-control" />
+                <span asp-validation-for="Client.Telefon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Email" class="control-label"></label>
+                <input asp-for="Client.Email" class="form-control" />
+                <span asp-validation-for="Client.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.CNP" class="control-label"></label>
+                <input asp-for="Client.CNP" class="form-control" />
+                <span asp-validation-for="Client.CNP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Data_Inregistrarii" class="control-label"></label>
+                <input asp-for="Client.Data_Inregistrarii" class="form-control" />
+                <span asp-validation-for="Client.Data_Inregistrarii" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

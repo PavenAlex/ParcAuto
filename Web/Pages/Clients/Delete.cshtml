@@ -1,0 +1,58 @@
+﻿@page
+@model Web.Pages.Clients.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.Nume)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.Nume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.Prenume)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.Prenume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.Telefon)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.Telefon)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.CNP)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.CNP)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.Data_Inregistrarii)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.Data_Inregistrarii)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Client.ID_Client" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
