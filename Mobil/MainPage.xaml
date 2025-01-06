@@ -3,7 +3,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Mobil.MainPage"
-    Title="Pagina Principală">
+    Title="Parc Auto">
 
     <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
         <Label Text="Bun venit!" FontSize="24" HorizontalOptions="Center" />
@@ -15,6 +15,9 @@
         <Button Text="Lista Facturi"
                 FontSize="18"
                 Clicked="OnFacturiButtonClicked" />
+        <Button Text="Lista Clienti"
+        FontSize="18"
+        Clicked="OnClientsButtonClicked" />
     </VerticalStackLayout>
 </ContentPage>
 

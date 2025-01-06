@@ -18,5 +18,9 @@
         {
             await Navigation.PushAsync(new FacturiPage());
         }
+        private async void OnClientsButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ClientsPage());
+        }
     }
 }

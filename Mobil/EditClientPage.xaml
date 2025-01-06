@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobil.EditClientPage"
+             Title="Editare Client">
+
+    <StackLayout Padding="20">
+        <Label Text="Nume:" FontSize="16" />
+        <Entry x:Name="NumeEntry" Placeholder="Introdu numele" />
+
+        <Label Text="Prenume:" FontSize="16" />
+        <Entry x:Name="PrenumeEntry" Placeholder="Introdu prenumele" />
+
+        <Label Text="Telefon:" FontSize="16" />
+        <Entry x:Name="TelefonEntry" Placeholder="Introdu telefonul" />
+
+        <Label Text="Email:" FontSize="16" />
+        <Entry x:Name="EmailEntry" Placeholder="Introdu emailul" />
+
+        <Label Text="CNP:" FontSize="16" />
+        <Entry x:Name="CNPEntry" Placeholder="Introdu CNP-ul" />
+
+        <Button Text="Salvează Modificările"
+                FontSize="18"
+                BackgroundColor="LightGreen"
+                Clicked="OnSaveButtonClicked" />
+    </StackLayout>
+</ContentPage>
