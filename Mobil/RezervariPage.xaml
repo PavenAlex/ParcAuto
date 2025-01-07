@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobil.RezervariPage"
+             Title="Adaugă Rezervare">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label Text="Selectează Vehiculul:" FontSize="18" />
+        <Picker x:Name="VehiclePicker" Title="Alege un vehicul" />
+
+        <Label Text="Selectează Clientul:" FontSize="Medium"/>
+        <Picker x:Name="ClientPicker" Title="Alege un client" />
+
+        <Label Text="Data Start:" FontSize="18" />
+        <DatePicker x:Name="StartDatePicker" />
+
+        <Label Text="Data Sfârșit:" FontSize="18" />
+        <DatePicker x:Name="EndDatePicker" />
+
+        <Button Text="Salvează Rezervarea"
+                Clicked="OnSaveReservationClicked"
+                BackgroundColor="Green"
+                TextColor="White" />
+    </VerticalStackLayout>
+</ContentPage>

@@ -16,8 +16,14 @@
                 FontSize="18"
                 Clicked="OnFacturiButtonClicked" />
         <Button Text="Lista Clienti"
-        FontSize="18"
-        Clicked="OnClientsButtonClicked" />
+                FontSize="18"
+                Clicked="OnClientsButtonClicked" />
+        <Button Text="Rezervări"
+                FontSize="18"
+                Clicked="OnRezervariButtonClicked" />
+        <Button Text="Mentenanță Vehicule"
+                FontSize="18"
+                Clicked="OnMentenantaButtonClicked" />
     </VerticalStackLayout>
 </ContentPage>
 

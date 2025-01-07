@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobil.MentenantaPage"
+             Title="Adaugă Mentenanță">
+
+    <StackLayout Padding="20" Spacing="10">
+
+        <!-- Picker pentru Vehicule -->
+        <Label Text="Selectează Vehiculul:" FontSize="Medium"/>
+        <Picker x:Name="VehiclePicker" Title="Alege un vehicul" />
+
+        <!-- Tip Intervenție -->
+        <Label Text="Tip Intervenție:" FontSize="Medium"/>
+        <Entry x:Name="TipInterventieEntry" Placeholder="Introduceți tipul intervenției" />
+
+        <!-- Data Programare -->
+        <Label Text="Data Programare:" FontSize="Medium"/>
+        <DatePicker x:Name="DataProgramarePicker" />
+
+        <!-- Cost Estimativ -->
+        <Label Text="Cost Estimativ:" FontSize="Medium"/>
+        <Entry x:Name="CostEstimativEntry" Placeholder="Introduceți costul estimativ" Keyboard="Numeric"/>
+
+        <!-- Buton Salvare -->
+        <Button Text="Salvează Mentenanța"
+                BackgroundColor="Green"
+                TextColor="White"
+                Clicked="OnSaveMentenantaClicked" />
+
+    </StackLayout>
+</ContentPage>

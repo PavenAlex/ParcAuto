@@ -22,5 +22,13 @@
         {
             await Navigation.PushAsync(new ClientsPage());
         }
+        private async void OnRezervariButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RezervariPage());
+        }
+        private async void OnMentenantaButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MentenantaPage());
+        }
     }
 }
