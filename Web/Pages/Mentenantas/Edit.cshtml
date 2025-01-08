@@ -1,0 +1,61 @@
+﻿@page
+@model Web.Pages.Mentenantas.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Mentenanta</h4>
+<h5>@Model.VehiculNume</h5>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Ascundem ID_Mentenanta pentru că nu vrem să fie modificat -->
+            <input type="hidden" asp-for="Mentenanta.ID_Mentenanta" />
+            <input type="hidden" asp-for="Mentenanta.ID_Vehicul" />
+
+           
+
+            <!-- Câmpul pentru Tipul intervenției -->
+            <div class="form-group">
+                <label asp-for="Mentenanta.Tip_Interventie" class="control-label"></label>
+                <input asp-for="Mentenanta.Tip_Interventie" class="form-control" />
+                <span asp-validation-for="Mentenanta.Tip_Interventie" class="text-danger"></span>
+            </div>
+
+            <!-- Câmpul pentru Data programării -->
+            <div class="form-group">
+                <label asp-for="Mentenanta.Data_Programare" class="control-label"></label>
+                <input asp-for="Mentenanta.Data_Programare" class="form-control" />
+                <span asp-validation-for="Mentenanta.Data_Programare" class="text-danger"></span>
+            </div>
+
+            <!-- Câmpul pentru Costul estimativ -->
+            <div class="form-group">
+                <label asp-for="Mentenanta.Cost_Estimativ" class="control-label"></label>
+                <input asp-for="Mentenanta.Cost_Estimativ" class="form-control" />
+                <span asp-validation-for="Mentenanta.Cost_Estimativ" class="text-danger"></span>
+            </div>
+
+            <!-- Butonul de submit -->
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

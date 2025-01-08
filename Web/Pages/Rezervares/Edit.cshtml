@@ -1,0 +1,61 @@
+﻿@page
+@model Web.Pages.Rezervares.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Rezervare</h4>
+<h5>Client: @Model.ClientNume</h5>
+<h5>Vehicul: @Model.VehiculNume</h5>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Ascundem ID_Rezervare pentru că nu vrem să fie modificat -->
+            <input type="hidden" asp-for="Rezervare.ID_Rezervare" />
+            <input type="hidden" asp-for="Rezervare.ID_Client" />
+            <input type="hidden" asp-for="Rezervare.ID_Vehicul" />
+
+            <!-- Câmpul pentru Data de început -->
+            <div class="form-group">
+                <label asp-for="Rezervare.Data_Start" class="control-label"></label>
+                <input asp-for="Rezervare.Data_Start" class="form-control" />
+                <span asp-validation-for="Rezervare.Data_Start" class="text-danger"></span>
+            </div>
+
+            <!-- Câmpul pentru Data de sfârșit -->
+            <div class="form-group">
+                <label asp-for="Rezervare.Data_Sfarsit" class="control-label"></label>
+                <input asp-for="Rezervare.Data_Sfarsit" class="form-control" />
+                <span asp-validation-for="Rezervare.Data_Sfarsit" class="text-danger"></span>
+            </div>
+
+            <!-- Câmpul pentru Status -->
+            <div class="form-group">
+                <label asp-for="Rezervare.Status" class="control-label"></label>
+                <input asp-for="Rezervare.Status" class="form-control" />
+                <span asp-validation-for="Rezervare.Status" class="text-danger"></span>
+            </div>
+
+            <!-- Butonul de submit -->
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

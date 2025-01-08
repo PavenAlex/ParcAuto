@@ -1,0 +1,51 @@
+﻿@page
+@model Web.Pages.Mentenantas.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Mentenanta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Mentenanta.ID_Vehicul" class="control-label"></label>
+                <select asp-for="Mentenanta.ID_Vehicul" class="form-control" asp-items="Model.Vehicule">
+                    <option value="">Selectează vehiculul</option>
+                </select>
+                <span asp-validation-for="Mentenanta.ID_Vehicul" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mentenanta.Tip_Interventie" class="control-label"></label>
+                <input asp-for="Mentenanta.Tip_Interventie" class="form-control" />
+                <span asp-validation-for="Mentenanta.Tip_Interventie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mentenanta.Data_Programare" class="control-label"></label>
+                <input asp-for="Mentenanta.Data_Programare" class="form-control" />
+                <span asp-validation-for="Mentenanta.Data_Programare" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mentenanta.Cost_Estimativ" class="control-label"></label>
+                <input asp-for="Mentenanta.Cost_Estimativ" class="form-control" />
+                <span asp-validation-for="Mentenanta.Cost_Estimativ" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
