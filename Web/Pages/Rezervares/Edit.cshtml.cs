@@ -70,11 +70,24 @@ namespace Web.Pages.Rezervares
 
         public async Task<IActionResult> OnPostAsync()
         {
+            // Validează dacă Data_Start este în viitor sau cel puțin astăzi
+            if (Rezervare.Data_Start < DateTime.Now.Date)
+            {
+                ModelState.AddModelError("Rezervare.Data_Start", "Data de început nu poate fi în trecut.");
+            }
+
+            // Validează dacă Data_Sfarsit este cel puțin la o zi după Data_Start
+            if (Rezervare.Data_Sfarsit <= Rezervare.Data_Start.AddDays(1))
+            {
+                ModelState.AddModelError("Rezervare.Data_Sfarsit", "Data invalida");
+            }
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
+            // Marchează Rezervare ca fiind modificată
             _context.Attach(Rezervare).State = EntityState.Modified;
 
             try
@@ -95,6 +108,7 @@ namespace Web.Pages.Rezervares
 
             return RedirectToPage("./Index");
         }
+
 
         private bool RezervareExists(int id)
         {

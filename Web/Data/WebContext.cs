@@ -18,5 +18,6 @@ namespace Web.Data
         public DbSet<ParcAuto.Models.Client> Clients { get; set; } = default!;
         public DbSet<ParcAuto.Models.Mentenanta> Mentenantas { get; set; } = default!;
         public DbSet<ParcAuto.Models.Rezervare> Rezervares { get; set; } = default!;
+        public DbSet<ParcAuto.Models.Factura> Facturas { get; set; } = default!;
     }
 }

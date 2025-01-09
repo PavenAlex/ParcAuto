@@ -54,8 +54,39 @@ namespace Web.Pages.Rezervares
 
         public async Task<IActionResult> OnPostAsync()
         {
+            if (Rezervare.Data_Start < DateTime.Now.Date)
+            {
+                ModelState.AddModelError("Rezervare.Data_Start", "Data de început nu poate fi în trecut.");
+            }
+
+
+            // Validează dacă Data_Sfarsit este cel puțin la o zi după Data_Start
+            if (Rezervare.Data_Sfarsit <= Rezervare.Data_Start.AddDays(1))
+            {
+                ModelState.AddModelError("Rezervare.Data_Sfarsit", "Data invalida");
+            }
+
             if (!ModelState.IsValid)
             {
+                // Repopulează dropdown-urile pentru a afișa din nou lista de clienți și vehicule
+                Clients = new SelectList(
+                    _context.Clients.Select(c => new
+                    {
+                        ID_Client = c.ID_Client,
+                        NumeComplet = $"{c.Nume} {c.Prenume}"
+                    }).ToList(),
+                    "ID_Client",
+                    "NumeComplet");
+
+                Vehicles = new SelectList(
+                    _context.Vehicles.Select(v => new
+                    {
+                        ID_Vehicul = v.ID_Vehicul,
+                        NumeVehicul = $"{v.Marca} - {v.Model}"
+                    }).ToList(),
+                    "ID_Vehicul",
+                    "NumeVehicul");
+
                 return Page();
             }
 
@@ -65,6 +96,7 @@ namespace Web.Pages.Rezervares
 
             return RedirectToPage("./Index");
         }
+
     }
 
 

@@ -1,0 +1,53 @@
+﻿@page
+@model Web.Pages.Facturas.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Factura[0].ID_Rezervare)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Factura[0].Data_Emitere)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Factura[0].Suma_Totala)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Factura[0].Status_Plata)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Factura) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_Rezervare)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data_Emitere)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Suma_Totala)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status_Plata)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID_Factura">Edit</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID_Factura">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
