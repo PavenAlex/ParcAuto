@@ -1,0 +1,71 @@
+﻿@page
+@model Web.Pages.Rezervares.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Rezervare</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Dropdown pentru Client -->
+            <div class="form-group">
+                <label asp-for="Rezervare.ID_Client" class="control-label"></label>
+                <select asp-for="Rezervare.ID_Client" class="form-control" asp-items="Model.Clients">
+                    <option value="">Selectează un client</option>
+                </select>
+                <span asp-validation-for="Rezervare.ID_Client" class="text-danger"></span>
+            </div>
+
+            <!-- Dropdown pentru Vehicul -->
+            <div class="form-group">
+                <label asp-for="Rezervare.ID_Vehicul" class="control-label"></label>
+                <select asp-for="Rezervare.ID_Vehicul" class="form-control" asp-items="Model.Vehicles">
+                    <option value="">Selectează un vehicul</option>
+                </select>
+                <span asp-validation-for="Rezervare.ID_Vehicul" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Rezervare.Data_Start" class="control-label"></label>
+                <input asp-for="Rezervare.Data_Start" class="form-control" />
+                <span asp-validation-for="Rezervare.Data_Start" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Rezervare.Data_Sfarsit" class="control-label"></label>
+                <input asp-for="Rezervare.Data_Sfarsit" class="form-control" />
+                <span asp-validation-for="Rezervare.Data_Sfarsit" class="text-danger"></span>
+            </div>
+
+
+            <!-- Câmpul pentru Status -->
+            <div class="form-group">
+                <label asp-for="Rezervare.Status" class="control-label"></label>
+                <input asp-for="Rezervare.Status" class="form-control" />
+                <span asp-validation-for="Rezervare.Status" class="text-danger"></span>
+            </div>
+
+            <!-- Butonul de submit -->
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

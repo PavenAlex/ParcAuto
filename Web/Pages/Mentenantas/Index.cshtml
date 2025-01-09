@@ -1,0 +1,60 @@
+﻿@page
+@model Web.Pages.Mentenantas.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Mentenanta[0].ID_Vehicul)
+            </th>
+            <th>
+                Vehicul
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mentenanta[0].Tip_Interventie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mentenanta[0].Data_Programare)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mentenanta[0].Cost_Estimativ)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Mentenanta) {
+            <tr>
+                <td>
+                    @item.ID_Vehicul
+                </td>
+                <td>
+                    @(Model.Vehicule.TryGetValue(item.ID_Vehicul, out var numeVehicul) ? numeVehicul : "Vehicul necunoscut")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tip_Interventie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data_Programare)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost_Estimativ)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID_Mentenanta">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID_Mentenanta">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID_Mentenanta">Delete</a>
+                </td>
+            </tr>
+}
+    </tbody>
+</table>
