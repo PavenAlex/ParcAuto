@@ -16,7 +16,7 @@
 
             <!-- Dropdown pentru Client -->
             <div class="form-group">
-                <label asp-for="Rezervare.ID_Client" class="control-label"></label>
+                <label asp-for="Rezervare.ID_Client" class="control-label">Client</label>
                 <select asp-for="Rezervare.ID_Client" class="form-control" asp-items="Model.Clients">
                     <option value="">Selectează un client</option>
                 </select>
@@ -25,7 +25,7 @@
 
             <!-- Dropdown pentru Vehicul -->
             <div class="form-group">
-                <label asp-for="Rezervare.ID_Vehicul" class="control-label"></label>
+                <label asp-for="Rezervare.ID_Vehicul" class="control-label">Vehicul</label>
                 <select asp-for="Rezervare.ID_Vehicul" class="form-control" asp-items="Model.Vehicles">
                     <option value="">Selectează un vehicul</option>
                 </select>
@@ -33,13 +33,13 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Rezervare.Data_Start" class="control-label"></label>
+                <label asp-for="Rezervare.Data_Start" class="control-label">Data start</label>
                 <input asp-for="Rezervare.Data_Start" class="form-control" />
                 <span asp-validation-for="Rezervare.Data_Start" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Rezervare.Data_Sfarsit" class="control-label"></label>
+                <label asp-for="Rezervare.Data_Sfarsit" class="control-label">Data final</label>
                 <input asp-for="Rezervare.Data_Sfarsit" class="form-control" />
                 <span asp-validation-for="Rezervare.Data_Sfarsit" class="text-danger"></span>
             </div>
@@ -47,8 +47,10 @@
 
             <!-- Câmpul pentru Status -->
             <div class="form-group">
-                <label asp-for="Rezervare.Status" class="control-label"></label>
-                <input asp-for="Rezervare.Status" class="form-control" />
+                <label asp-for="Rezervare.Status" class="control-label">Status</label>
+                <select asp-for="Rezervare.Status" class="form-control" asp-items="Model.StatusOptions">
+                    <option value="">Selectează un status</option>
+                </select>
                 <span asp-validation-for="Rezervare.Status" class="text-danger"></span>
             </div>
 

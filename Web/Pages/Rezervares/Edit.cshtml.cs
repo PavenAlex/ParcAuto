@@ -26,6 +26,9 @@ namespace Web.Pages.Rezervares
         public string ClientNume { get; set; } = string.Empty;  // Adăugăm o proprietate pentru numele clientului
         public string VehiculNume { get; set; } = string.Empty; // Adăugăm o proprietate pentru marca vehiculului
 
+        // Dropdown pentru Status
+        public SelectList StatusOptions { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -65,6 +68,9 @@ namespace Web.Pages.Rezervares
                 VehiculNume = $"{vehicul.Marca} {vehicul.Model}";
             }
 
+            // Populăm lista pentru status
+            StatusOptions = new SelectList(new List<string> { "în așteptare", "în curs", "finalizată" });
+
             return Page();
         }
 
@@ -79,11 +85,13 @@ namespace Web.Pages.Rezervares
             // Validează dacă Data_Sfarsit este cel puțin la o zi după Data_Start
             if (Rezervare.Data_Sfarsit <= Rezervare.Data_Start.AddDays(1))
             {
-                ModelState.AddModelError("Rezervare.Data_Sfarsit", "Data invalida");
+                ModelState.AddModelError("Rezervare.Data_Sfarsit", "Data invalidă.");
             }
 
             if (!ModelState.IsValid)
             {
+                // Repopulăm lista de Status în caz de eroare
+                StatusOptions = new SelectList(new List<string> { "în așteptare", "în curs", "finalizată" });
                 return Page();
             }
 
@@ -109,11 +117,9 @@ namespace Web.Pages.Rezervares
             return RedirectToPage("./Index");
         }
 
-
         private bool RezervareExists(int id)
         {
             return _context.Rezervares.Any(e => e.ID_Rezervare == id);
         }
     }
-
 }

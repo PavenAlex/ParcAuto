@@ -14,24 +14,24 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Mentenanta.ID_Vehicul" class="control-label"></label>
+                <label asp-for="Mentenanta.ID_Vehicul" class="control-label">Vehicul</label>
                 <select asp-for="Mentenanta.ID_Vehicul" class="form-control" asp-items="Model.Vehicule">
                     <option value="">Selectează vehiculul</option>
                 </select>
                 <span asp-validation-for="Mentenanta.ID_Vehicul" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Mentenanta.Tip_Interventie" class="control-label"></label>
+                <label asp-for="Mentenanta.Tip_Interventie" class="control-label">Interventie</label>
                 <input asp-for="Mentenanta.Tip_Interventie" class="form-control" />
                 <span asp-validation-for="Mentenanta.Tip_Interventie" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Mentenanta.Data_Programare" class="control-label"></label>
+                <label asp-for="Mentenanta.Data_Programare" class="control-label">Data programare</label>
                 <input asp-for="Mentenanta.Data_Programare" class="form-control" />
                 <span asp-validation-for="Mentenanta.Data_Programare" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Mentenanta.Cost_Estimativ" class="control-label"></label>
+                <label asp-for="Mentenanta.Cost_Estimativ" class="control-label">Cost estimativ</label>
                 <input asp-for="Mentenanta.Cost_Estimativ" class="form-control" />
                 <span asp-validation-for="Mentenanta.Cost_Estimativ" class="text-danger"></span>
             </div>

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -22,6 +20,9 @@ namespace Web.Pages.Rezervares
         [BindProperty]
         public Rezervare Rezervare { get; set; } = default!;
 
+        public string NumePrenumeClient { get; set; } = string.Empty;
+        public string MarcaModelVehicul { get; set; } = string.Empty;
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -38,6 +39,20 @@ namespace Web.Pages.Rezervares
             else
             {
                 Rezervare = rezervare;
+
+                // Obține numele și prenumele clientului
+                var client = await _context.Clients.FirstOrDefaultAsync(c => c.ID_Client == rezervare.ID_Client);
+                if (client != null)
+                {
+                    NumePrenumeClient = $"{client.Nume} {client.Prenume}";
+                }
+
+                // Obține marca și modelul vehiculului
+                var vehicul = await _context.Vehicles.FirstOrDefaultAsync(v => v.ID_Vehicul == rezervare.ID_Vehicul);
+                if (vehicul != null)
+                {
+                    MarcaModelVehicul = $"{vehicul.Marca} {vehicul.Model}";
+                }
             }
             return Page();
         }
@@ -49,10 +64,42 @@ namespace Web.Pages.Rezervares
                 return NotFound();
             }
 
-            var rezervare = await _context.Rezervares.FindAsync(id);
-            if (rezervare != null)
+            // Verificăm dacă există o factură asociată cu ID_Rezervare
+            var facturaExistenta = await _context.Facturas
+                .FirstOrDefaultAsync(f => f.ID_Rezervare == id);
+
+            if (facturaExistenta != null)
             {
-                Rezervare = rezervare;
+                // Dacă există factură, adăugăm un mesaj de eroare specific
+                ModelState.AddModelError(string.Empty, "Nu puteți șterge această rezervare deoarece există o factură asociată.");
+
+                // Reîncarcă datele necesare pentru a le afișa în pagină
+                var rezervare = await _context.Rezervares.FirstOrDefaultAsync(m => m.ID_Rezervare == id);
+                if (rezervare != null)
+                {
+                    Rezervare = rezervare;
+
+                    // Obține numele și prenumele clientului
+                    var client = await _context.Clients.FirstOrDefaultAsync(c => c.ID_Client == rezervare.ID_Client);
+                    if (client != null)
+                    {
+                        NumePrenumeClient = $"{client.Nume} {client.Prenume}";
+                    }
+
+                    // Obține marca și modelul vehiculului
+                    var vehicul = await _context.Vehicles.FirstOrDefaultAsync(v => v.ID_Vehicul == rezervare.ID_Vehicul);
+                    if (vehicul != null)
+                    {
+                        MarcaModelVehicul = $"{vehicul.Marca} {vehicul.Model}";
+                    }
+                }
+                return Page(); // Returnează pagina cu datele și mesajul de eroare
+            }
+
+            var rezervareToDelete = await _context.Rezervares.FindAsync(id);
+            if (rezervareToDelete != null)
+            {
+                Rezervare = rezervareToDelete;
                 _context.Rezervares.Remove(Rezervare);
                 await _context.SaveChangesAsync();
             }

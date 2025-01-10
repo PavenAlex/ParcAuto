@@ -14,19 +14,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Mentenanta[0].ID_Vehicul)
+                ID Vehicul
             </th>
             <th>
                 Vehicul
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Mentenanta[0].Tip_Interventie)
+                Interventie
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Mentenanta[0].Data_Programare)
+                Data programare
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Mentenanta[0].Cost_Estimativ)
+                Cost estimativ
             </th>
             <th></th>
         </tr>
@@ -51,7 +51,6 @@
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.ID_Mentenanta">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID_Mentenanta">Details</a> |
                     <a asp-page="./Delete" asp-route-id="@item.ID_Mentenanta">Delete</a>
                 </td>
             </tr>

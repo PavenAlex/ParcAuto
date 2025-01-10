@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ParcAuto.Models;
 using Web.Data;
@@ -39,13 +36,29 @@ namespace Web.Pages.Clients
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            // Validarea numărului de telefon (10 cifre, începe cu 0)
+            if (Client.Telefon != null && !Regex.IsMatch(Client.Telefon, @"^0\d{9}$"))
+            {
+                ModelState.AddModelError("Client.Telefon", "Număr de telefon invalid");
+            }
+
+            // Validarea CNP-ului (13 cifre)
+            if (Client.CNP != null && !Regex.IsMatch(Client.CNP, @"^\d{13}$"))
+            {
+                ModelState.AddModelError("Client.CNP", "CNP invalid");
+            }
+
+            // Validarea formatului de email
+            if (Client.Email != null && !Regex.IsMatch(Client.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                ModelState.AddModelError("Client.Email", "Mail invalid");
+            }
+
             if (!ModelState.IsValid)
             {
-                return Page();
+                return Page(); // Dacă există erori de validare, întoarcem pagina cu mesajele de eroare
             }
 
             _context.Attach(Client).State = EntityState.Modified;

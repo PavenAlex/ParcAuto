@@ -14,40 +14,41 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Factura[0].ID_Rezervare)
+                Detalii factura
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Factura[0].Data_Emitere)
+                Data emitere
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Factura[0].Suma_Totala)
+                Suma
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Factura[0].Status_Plata)
+                Status
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Factura) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID_Rezervare)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Data_Emitere)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Suma_Totala)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status_Plata)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID_Factura">Edit</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID_Factura">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Factura)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientVehicul)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data_Emitere)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Suma_Totala)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status_Plata)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID_Factura">Edit</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID_Factura">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

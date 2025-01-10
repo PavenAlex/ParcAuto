@@ -15,7 +15,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="Factura.ID_Rezervare" class="control-label"></label>
+                <label asp-for="Factura.ID_Rezervare" class="control-label">Rezervare</label>
                 <select asp-for="Factura.ID_Rezervare" class="form-control" asp-items="Model.RezervariDropdown">
                     <option value="">Selectează rezervare</option>
                 </select>
@@ -23,13 +23,13 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Factura.Suma_Totala" class="control-label"></label>
+                <label asp-for="Factura.Suma_Totala" class="control-label">Suma</label>
                 <input asp-for="Factura.Suma_Totala" class="form-control" />
                 <span asp-validation-for="Factura.Suma_Totala" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Factura.Status_Plata" class="control-label"></label>
+                <label asp-for="Factura.Status_Plata" class="control-label">Status</label>
                 <select asp-for="Factura.Status_Plata" class="form-control">
                     <option value="Neachitat" selected>Neachitat</option>
                     <option value="Achitat">Achitat</option>
