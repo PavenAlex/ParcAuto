@@ -29,9 +29,12 @@ builder.Services.AddRazorPages(options =>
     options.Conventions.AuthorizeFolder("/Clients", "AdminPolicy");
     options.Conventions.AuthorizeFolder("/Rezervares", "AdminPolicy");
     options.Conventions.AuthorizeFolder("/Facturas", "AdminPolicy");
-    options.Conventions.AuthorizeFolder("/Vehicles/Edit", "AdminPolicy");
-    options.Conventions.AuthorizeFolder("/Vehicles/Create", "AdminPolicy");
-    options.Conventions.AuthorizeFolder("/Vehicles/Delete", "AdminPolicy");
+    options.Conventions.AuthorizeFolder("/Vehicles", "AdminPolicy");
+    options.Conventions.AllowAnonymousToPage("/Vehicles/Index");
+    options.Conventions.AllowAnonymousToPage("/Vehicles/Details");
+
+
+
 
 
 
