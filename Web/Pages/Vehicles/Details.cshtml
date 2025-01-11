@@ -49,6 +49,26 @@
         </dd>
     </dl>
 </div>
+
+<div>
+    <h4>Perioade rezervate</h4>
+    @if (Model.Rezervari.Any())
+    {
+        <ul>
+            @foreach (var rezervare in Model.Rezervari)
+            {
+                <li>
+                    @rezervare.Data_Start.ToString("dd/MM/yyyy") - @rezervare.Data_Sfarsit.ToString("dd/MM/yyyy")
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>Nu există rezervări pentru acest vehicul.</p>
+    }
+</div>
+
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Vehicle.ID_Vehicul">Edit</a> |
     <a asp-page="./Index">Back to List</a>

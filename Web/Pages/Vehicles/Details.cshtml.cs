@@ -20,6 +20,7 @@ namespace Web.Vehicles
         }
 
         public Vehicle Vehicle { get; set; } = default!;
+        public List<Rezervare> Rezervari { get; set; } = new List<Rezervare>(); // Lista rezervărilor pentru vehicul
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -33,10 +34,13 @@ namespace Web.Vehicles
             {
                 return NotFound();
             }
-            else
-            {
-                Vehicle = vehicle;
-            }
+
+            // Obține doar rezervările viitoare sau cele care se termină astăzi
+            Rezervari = await _context.Rezervares
+                .Where(r => r.ID_Vehicul == id && r.Data_Sfarsit >= DateTime.Now)
+                .ToListAsync();
+
+            Vehicle = vehicle;
             return Page();
         }
     }

@@ -23,16 +23,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Vehicles[0].An_Fabricatie)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vehicles[0].Tip_Combustibil)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vehicles[0].Stare)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vehicles[0].Kilometraj)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -49,18 +39,13 @@
                     @Html.DisplayFor(modelVehicle => vehicle.An_Fabricatie)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelVehicle => vehicle.Tip_Combustibil)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelVehicle => vehicle.Stare)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelVehicle => vehicle.Kilometraj)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@vehicle.ID_Vehicul">Edit</a> |
                     <a asp-page="./Details" asp-route-id="@vehicle.ID_Vehicul">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@vehicle.ID_Vehicul">Delete</a>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                            <a asp-page="./Edit" asp-route-id="@vehicle.ID_Vehicul">Edit</a>
+                            <span> | </span>
+                            <a asp-page="./Delete" asp-route-id="@vehicle.ID_Vehicul">Delete</a>
+                    }
                 </td>
             </tr>
         }
