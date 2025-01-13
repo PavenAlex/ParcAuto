@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ParcAuto.Models;
-using Web.Data;
 
 namespace Web.Pages.Clients
 {

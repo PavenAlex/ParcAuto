@@ -12,5 +12,13 @@ namespace ParcAuto.Data
         public DbSet<Rezervare> Rezervares { get; set; }
         public DbSet<Mentenanta> Mentenantas { get; set; }
         public DbSet<Factura> Facturas { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Mentenanta>()
+                .HasOne(m => m.Vehicul) // Relația 1-N
+                .WithMany(v => v.Mentenante)
+                .HasForeignKey(m => m.ID_Vehicul); // Cheia străină
+        }
     }
 }
