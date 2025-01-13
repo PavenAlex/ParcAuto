@@ -16,5 +16,8 @@ namespace ParcAuto.Models
         public string Tip_Combustibil { get; set; }
         public string Stare { get; set; } 
         public int Kilometraj { get; set; }
+
+        public ICollection<Mentenanta> Mentenante { get; set; }
+
     }
 }
