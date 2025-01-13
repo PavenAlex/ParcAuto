@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ParcAuto.Models
 {
@@ -16,8 +17,10 @@ namespace ParcAuto.Models
         public string Tip_Combustibil { get; set; }
         public string Stare { get; set; } 
         public int Kilometraj { get; set; }
-
-        public ICollection<Mentenanta> Mentenante { get; set; }
+        [JsonIgnore]
+        public ICollection<Mentenanta>? Mentenante { get; set; }
+        [JsonIgnore]
+        public ICollection<Rezervare>? Rezervari { get; set; }
 
     }
 }

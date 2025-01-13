@@ -16,14 +16,24 @@ namespace ParcAuto.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Mentenanta>()
-                .HasOne(m => m.Vehicul) // Relația 1-N
+                .HasOne(m => m.Vehicul) 
                 .WithMany(v => v.Mentenante)
-                .HasForeignKey(m => m.ID_Vehicul); // Cheia străină
+                .HasForeignKey(m => m.ID_Vehicul); 
 
             modelBuilder.Entity<Rezervare>()
-               .HasOne(r => r.Factura)               // O Rezervare are o Factura
-               .WithOne(f => f.Rezervare)            // O Factura are o Rezervare
-               .HasForeignKey<Factura>(f => f.ID_Rezervare); // Cheia străină este ID_Rezervare în Factura
+               .HasOne(r => r.Factura)             
+               .WithOne(f => f.Rezervare)          
+               .HasForeignKey<Factura>(f => f.ID_Rezervare); 
+
+           modelBuilder.Entity<Rezervare>()
+                .HasOne(r => r.Client)                
+                .WithMany(c => c.Rezervari)           
+                .HasForeignKey(r => r.ID_Client);     
+
+            modelBuilder.Entity<Rezervare>()
+                .HasOne(r => r.Vehicle)              
+                .WithMany(v => v.Rezervari)          
+                .HasForeignKey(r => r.ID_Vehicul);     
         }
 
        
