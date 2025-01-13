@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ParcAuto.Models
 {
@@ -12,6 +13,9 @@ namespace ParcAuto.Models
         public string Email { get; set; }
         public string CNP { get; set; }
         public DateTime Data_Inregistrarii { get; set; }
+        [JsonIgnore]
+        public ICollection<Rezervare>? Rezervari { get; set; }
+
 
     }
 }

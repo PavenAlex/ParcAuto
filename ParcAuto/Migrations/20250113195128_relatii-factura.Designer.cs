@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ParcAuto.Data;
 
@@ -11,9 +12,11 @@ using ParcAuto.Data;
 namespace ParcAuto.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250113195128_relatii-factura")]
+    partial class relatiifactura
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,10 +144,6 @@ namespace ParcAuto.Migrations
 
                     b.HasKey("ID_Rezervare");
 
-                    b.HasIndex("ID_Client");
-
-                    b.HasIndex("ID_Vehicul");
-
                     b.ToTable("Rezervares");
                 });
 
@@ -207,38 +206,12 @@ namespace ParcAuto.Migrations
 
             modelBuilder.Entity("ParcAuto.Models.Rezervare", b =>
                 {
-                    b.HasOne("ParcAuto.Models.Client", "Client")
-                        .WithMany("Rezervari")
-                        .HasForeignKey("ID_Client")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ParcAuto.Models.Vehicle", "Vehicle")
-                        .WithMany("Rezervari")
-                        .HasForeignKey("ID_Vehicul")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-
-                    b.Navigation("Vehicle");
-                });
-
-            modelBuilder.Entity("ParcAuto.Models.Client", b =>
-                {
-                    b.Navigation("Rezervari");
-                });
-
-            modelBuilder.Entity("ParcAuto.Models.Rezervare", b =>
-                {
                     b.Navigation("Factura");
                 });
 
             modelBuilder.Entity("ParcAuto.Models.Vehicle", b =>
                 {
                     b.Navigation("Mentenante");
-
-                    b.Navigation("Rezervari");
                 });
 #pragma warning restore 612, 618
         }
