@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ParcAuto.Models
 {
@@ -11,5 +12,7 @@ namespace ParcAuto.Models
         public DateTime Data_Start { get; set; }
         public DateTime Data_Sfarsit { get; set; }
         public string Status { get; set; }
+        [JsonIgnore]
+        public Factura? Factura { get; set; }
     }
 }
