@@ -25,20 +25,19 @@ namespace Mobil
             _rezervareService = new RezervareService();
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri("https://localhost:7280/api/") // Asigură-te că URL-ul este corect!
+                BaseAddress = new Uri("https://localhost:7280/api/") 
             };
 
-            LoadVehicles(); // Încarcă lista de vehicule
+            LoadVehicles(); 
         }
 
-        // Încarcă vehiculele din baza de date
         private async void LoadVehicles()
         {
             try
             {
-                _vehicles = await _vehicleService.GetVehiclesAsync(); // Preia vehiculele
-                VehiclePicker.ItemsSource = _vehicles; // Adaugă vehiculele în Picker
-                VehiclePicker.ItemDisplayBinding = new Binding("Marca"); // Afișează doar marca
+                _vehicles = await _vehicleService.GetVehiclesAsync(); 
+                VehiclePicker.ItemsSource = _vehicles; 
+                VehiclePicker.ItemDisplayBinding = new Binding("Marca"); 
 
                 _clients = await _clientService.GetClientsAsync();
                 ClientPicker.ItemsSource = _clients;
@@ -50,12 +49,10 @@ namespace Mobil
             }
         }
 
-        // Salvează rezervarea
         private async void OnSaveReservationClicked(object sender, EventArgs e)
         {
             try
             {
-                // Verifică dacă s-a selectat un vehicul
                 var selectedVehicle = (Vehicle)VehiclePicker.SelectedItem;
                 var selectedClient = (Client)ClientPicker.SelectedItem;
                 if (selectedVehicle == null || selectedClient == null)
@@ -64,7 +61,6 @@ namespace Mobil
                     return;
                 }
 
-                // Creează obiectul pentru rezervare
                 var newReservation = new
                 {
                     ID_Vehicul = selectedVehicle.ID_Vehicul,
@@ -74,13 +70,12 @@ namespace Mobil
                     Status = selectedVehicle.Stare
                 };
 
-                // Trimite cererea POST către API
                 var response = await _httpClient.PostAsJsonAsync("Rezervares", newReservation);
 
                 if (response.IsSuccessStatusCode)
                 {
                     await DisplayAlert("Succes", "Rezervarea a fost salvată!", "OK");
-                    await Navigation.PopAsync(); // Revine la pagina anterioară
+                    await Navigation.PopAsync(); 
                 }
                 else
                 {

@@ -6,23 +6,18 @@
 
     <StackLayout Padding="20" Spacing="10">
 
-        <!-- Picker pentru Vehicule -->
         <Label Text="Selectează Vehiculul:" FontSize="Medium"/>
         <Picker x:Name="VehiclePicker" Title="Alege un vehicul" />
 
-        <!-- Tip Intervenție -->
         <Label Text="Tip Intervenție:" FontSize="Medium"/>
         <Entry x:Name="TipInterventieEntry" Placeholder="Introduceți tipul intervenției" />
 
-        <!-- Data Programare -->
         <Label Text="Data Programare:" FontSize="Medium"/>
         <DatePicker x:Name="DataProgramarePicker" />
 
-        <!-- Cost Estimativ -->
         <Label Text="Cost Estimativ:" FontSize="Medium"/>
         <Entry x:Name="CostEstimativEntry" Placeholder="Introduceți costul estimativ" Keyboard="Numeric"/>
 
-        <!-- Buton Salvare -->
         <Button Text="Salvează Mentenanța"
                 BackgroundColor="Green"
                 TextColor="White"

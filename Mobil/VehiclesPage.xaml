@@ -5,13 +5,11 @@
              x:Class="Mobil.VehiclesPage"
              Title="Vehicule">
 
-    <!-- Bara de instrumente pentru adăugarea unui vehicul nou -->
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Adaugă vehicul"
                      Clicked="OnAddVehicleClicked" />
     </ContentPage.ToolbarItems>
 
-    <!-- Listă de vehicule -->
     <CollectionView x:Name="VehiclesList" SelectionMode="Single">
         <CollectionView.ItemTemplate>
             <DataTemplate>

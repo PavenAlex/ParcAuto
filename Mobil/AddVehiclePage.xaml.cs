@@ -14,7 +14,6 @@ namespace Mobil
         {
             try
             {
-                // Creează noul vehicul pe baza datelor introduse
                 var newVehicle = new
                 {
                     Marca = MarcaEntry.Text,
@@ -25,7 +24,6 @@ namespace Mobil
                     Kilometraj = int.Parse(KilometrajEntry.Text)
                 };
 
-                // Configurează HttpClient pentru a trimite cererea către API
                 var handler = new HttpClientHandler
                 {
                     ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
@@ -43,12 +41,11 @@ namespace Mobil
                     await DisplayAlert("Succes", "Vehiculul a fost adăugat!", "OK");
                     MessagingCenter.Send(this, "RefreshVehicles");
 
-                    // Navighează înapoi la lista de vehicule
                     await Shell.Current.GoToAsync("..");
                 }
                 else
                 {
-                    var error = await response.Content.ReadAsStringAsync(); // Mesaj eroare API
+                    var error = await response.Content.ReadAsStringAsync(); 
                     await DisplayAlert("Eroare", $"Adăugarea a eșuat: {error}", "OK");
                 }
             }

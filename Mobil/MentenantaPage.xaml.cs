@@ -9,7 +9,7 @@ namespace Mobil
         private readonly VehicleService _vehicleService;
         private readonly HttpClient _httpClient;
 
-        private List<Vehicle> _vehicles; // Lista de vehicule
+        private List<Vehicle> _vehicles; 
 
         public MentenantaPage()
         {
@@ -17,20 +17,19 @@ namespace Mobil
             _vehicleService = new VehicleService();
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri("https://localhost:7280/api/") // Înlocuiește cu URL-ul tău
+                BaseAddress = new Uri("https://localhost:7280/api/") 
             };
 
-            LoadVehicles(); // Încarcă vehiculele
+            LoadVehicles(); 
         }
 
-        // Încarcă lista de vehicule
         private async void LoadVehicles()
         {
             try
             {
                 _vehicles = await _vehicleService.GetVehiclesAsync();
                 VehiclePicker.ItemsSource = _vehicles;
-                VehiclePicker.ItemDisplayBinding = new Binding("Marca"); // Afișează marca
+                VehiclePicker.ItemDisplayBinding = new Binding("Marca"); 
             }
             catch (Exception ex)
             {
@@ -38,12 +37,10 @@ namespace Mobil
             }
         }
 
-        // Salvarea mentenanței
         private async void OnSaveMentenantaClicked(object sender, EventArgs e)
         {
             try
             {
-                // Verifică selecția vehiculului
                 var selectedVehicle = (Vehicle)VehiclePicker.SelectedItem;
 
                 if (selectedVehicle == null)
@@ -52,7 +49,6 @@ namespace Mobil
                     return;
                 }
 
-                // Creează obiectul mentenanță
                 var newMentenanta = new
                 {
                     ID_Vehicul = selectedVehicle.ID_Vehicul,
@@ -61,13 +57,12 @@ namespace Mobil
                     Cost_Estimativ = decimal.Parse(CostEstimativEntry.Text)
                 };
 
-                // Trimite cererea POST către API
                 var response = await _httpClient.PostAsJsonAsync("Mentenantas", newMentenanta);
 
                 if (response.IsSuccessStatusCode)
                 {
                     await DisplayAlert("Succes", "Mentenanța a fost adăugată!", "OK");
-                    await Navigation.PopAsync(); // Revine la pagina anterioară
+                    await Navigation.PopAsync(); 
                 }
                 else
                 {

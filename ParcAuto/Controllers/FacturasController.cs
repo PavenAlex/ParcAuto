@@ -21,14 +21,12 @@ namespace ParcAuto.Controllers
             _context = context;
         }
 
-        // GET: api/Facturas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Factura>>> GetFacturas()
         {
             return await _context.Facturas.ToListAsync();
         }
 
-        // GET: api/Facturas/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Factura>> GetFactura(int id)
         {
@@ -42,8 +40,7 @@ namespace ParcAuto.Controllers
             return factura;
         }
 
-        // PUT: api/Facturas/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFactura(int id, Factura factura)
         {
@@ -73,8 +70,7 @@ namespace ParcAuto.Controllers
             return NoContent();
         }
 
-        // POST: api/Facturas
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPost]
         public async Task<ActionResult<Factura>> PostFactura(Factura factura)
         {
@@ -84,7 +80,7 @@ namespace ParcAuto.Controllers
             return CreatedAtAction("GetFactura", new { id = factura.ID_Factura }, factura);
         }
 
-        // DELETE: api/Facturas/5
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFactura(int id)
         {

@@ -15,13 +15,12 @@ namespace Mobil
             LoadVehicles();
         }
 
-        // Metoda pentru a încărca lista vehiculelor
         private async void LoadVehicles()
         {
             try
             {
                 var vehicles = await _vehicleService.GetVehiclesAsync();
-                VehiclesList.ItemsSource = vehicles; // Populează lista
+                VehiclesList.ItemsSource = vehicles; 
             }
             catch (Exception ex)
             {
@@ -30,17 +29,15 @@ namespace Mobil
         }
         private async void OnAddVehicleClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddVehiclePage()); // Navighează către pagina formularului
+            await Navigation.PushAsync(new AddVehiclePage()); 
         }
         private async void OnEditVehicleClicked(object sender, EventArgs e)
         {
-            // Preia vehiculul selectat
             var button = sender as Button;
             var selectedVehicle = button?.CommandParameter as Vehicle;
 
             if (selectedVehicle != null)
             {
-                // Navighează la pagina de editare cu detaliile vehiculului selectat
                 await Navigation.PushAsync(new EditVehiclePage(selectedVehicle));
             }
         }
@@ -51,13 +48,11 @@ namespace Mobil
 
             if (selectedVehicle != null)
             {
-                // Confirmare pentru ștergere
                 bool confirm = await DisplayAlert("Confirmare", $"Ești sigur că vrei să ștergi vehiculul {selectedVehicle.Marca} {selectedVehicle.Model}?", "Da", "Nu");
                 if (confirm)
                 {
                     try
                     {
-                        // Configurare handler SSL pentru emulator
                         var handler = new HttpClientHandler
                         {
                             ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
@@ -68,14 +63,12 @@ namespace Mobil
                             BaseAddress = new Uri("https://localhost:7280/api/") 
                         };
 
-                        // Trimitere cerere DELETE către API
                         var response = await httpClient.DeleteAsync($"vehicles/{selectedVehicle.ID_Vehicul}");
 
                         if (response.IsSuccessStatusCode)
                         {
                             await DisplayAlert("Succes", "Vehiculul a fost șters!", "OK");
 
-                            // Reîncarcă lista după ștergere
                             LoadVehicles();
                         }
                         else
@@ -100,11 +93,11 @@ namespace Mobil
             base.OnAppearing();
             MessagingCenter.Subscribe<AddVehiclePage>(this, "RefreshVehicles", (sender) =>
             {
-                LoadVehicles(); // Reîncarcă lista după adăugare
+                LoadVehicles(); 
             });
             MessagingCenter.Subscribe<EditVehiclePage>(this, "RefreshVehicles", (sender) =>
             {
-                LoadVehicles(); // Reîncarcă lista după editare
+                LoadVehicles(); 
             });
         }
     }

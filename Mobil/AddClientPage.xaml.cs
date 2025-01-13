@@ -14,7 +14,6 @@ public partial class AddClientPage : ContentPage
     {
         try
         {
-            // Crează un nou client pe baza datelor introduse
             var newClient = new Client
             {
                 Nume = NumeEntry.Text,
@@ -25,7 +24,6 @@ public partial class AddClientPage : ContentPage
                 Data_Inregistrarii = DateTime.Now
             };
 
-            // Trimite clientul către API pentru a-l salva în baza de date
             var httpClient = new HttpClient
             {
                 BaseAddress = new Uri("https://localhost:7280/api/")

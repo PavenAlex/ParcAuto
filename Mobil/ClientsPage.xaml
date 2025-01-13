@@ -13,7 +13,6 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout Padding="10" Spacing="5">
-                    <!-- Afișare informații client -->
                     <Label Text="{Binding Nume, StringFormat='Nume: {0}'}" FontSize="18" FontAttributes="Bold" TextColor="White" />
                     <Label Text="{Binding Prenume, StringFormat='Prenume: {0}'}" FontSize="16" TextColor="White" />
                     <Label Text="{Binding Telefon, StringFormat='Telefon: {0}'}" FontSize="14" TextColor="White" />

@@ -11,7 +11,7 @@ namespace Mobil
         {
             InitializeComponent();
             _facturaService = new FacturaService();
-            LoadFacturi(); // Încărcare automată
+            LoadFacturi(); 
         }
 
         private async void LoadFacturi()
@@ -19,7 +19,7 @@ namespace Mobil
             try
             {
                 var facturi = await _facturaService.GetFacturiAsync();
-                FacturiList.ItemsSource = facturi; // Populează lista
+                FacturiList.ItemsSource = facturi; 
             }
             catch (Exception ex)
             {
@@ -28,8 +28,8 @@ namespace Mobil
         }
         private async void OnDeleteFacturaClicked(object sender, EventArgs e)
         {
-            var button = sender as Button; // Preia butonul apăsat
-            var ID_Factura = (int)button.CommandParameter; // Preia ID-ul facturii asociate
+            var button = sender as Button; 
+            var ID_Factura = (int)button.CommandParameter; 
 
             bool confirm = await DisplayAlert(
                 "Confirmare",
@@ -37,16 +37,16 @@ namespace Mobil
                 "Da",
                 "Nu");
 
-            if (!confirm) return; // Oprește dacă utilizatorul anulează
+            if (!confirm) return; 
 
             try
             {
-                var success = await _facturaService.DeleteFacturaAsync(ID_Factura); // Apelează API-ul
+                var success = await _facturaService.DeleteFacturaAsync(ID_Factura); 
 
                 if (success)
                 {
                     await DisplayAlert("Succes", "Factura a fost ștearsă!", "OK");
-                    LoadFacturi(); // Reîncarcă lista după ștergere
+                    LoadFacturi(); 
                 }
                 else
                 {

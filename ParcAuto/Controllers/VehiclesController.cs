@@ -21,14 +21,12 @@ namespace ParcAuto.Controllers
             _context = context;
         }
 
-        // GET: api/Vehicles
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Vehicle>>> GetVehicles()
         {
             return await _context.Vehicles.ToListAsync();
         }
 
-        // GET: api/Vehicles/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Vehicle>> GetVehicle(int id)
         {
@@ -42,8 +40,7 @@ namespace ParcAuto.Controllers
             return vehicle;
         }
 
-        // PUT: api/Vehicles/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutVehicle(int id, Vehicle vehicle)
         {
@@ -73,8 +70,7 @@ namespace ParcAuto.Controllers
             return NoContent();
         }
 
-        // POST: api/Vehicles
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPost]
         public async Task<ActionResult<Vehicle>> PostVehicle(Vehicle vehicle)
         {
@@ -84,7 +80,6 @@ namespace ParcAuto.Controllers
             return CreatedAtAction("GetVehicle", new { id = vehicle.ID_Vehicul }, vehicle);
         }
 
-        // DELETE: api/Vehicles/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVehicle(int id)
         {

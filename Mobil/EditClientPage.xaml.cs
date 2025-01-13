@@ -10,10 +10,10 @@ namespace Mobil
         public EditClientPage(Client selectedClient)
         {
             InitializeComponent();
-            _client = selectedClient; // Setează clientul primit
-            _clientService = new ClientService(); // Inițializează serviciul
-            BindingContext = _client; // Leagă datele clientului la interfață
-            LoadClientDetails(); // Încarcă detaliile
+            _client = selectedClient; 
+            _clientService = new ClientService(); 
+            BindingContext = _client; 
+            LoadClientDetails(); 
         }
         private void LoadClientDetails()
         {
@@ -24,7 +24,6 @@ namespace Mobil
             CNPEntry.Text = _client.CNP;
         }
 
-        // Încărcăm detaliile clientului selectat
         private async void LoadClientDetails(int clientId)
         {
             try
@@ -43,7 +42,7 @@ namespace Mobil
                 else
                 {
                     await DisplayAlert("Eroare", "Clientul nu a fost găsit!", "OK");
-                    await Shell.Current.GoToAsync(".."); // Ne întoarcem la pagina anterioară
+                    await Shell.Current.GoToAsync(".."); 
                 }
             }
             catch (Exception ex)
@@ -52,12 +51,10 @@ namespace Mobil
             }
         }
 
-        // Salvăm modificările
         private async void OnSaveButtonClicked(object sender, EventArgs e)
         {
             try
             {
-                // Actualizează datele clientului cu cele introduse în UI
                 _client.Nume = NumeEntry.Text;
                 _client.Prenume = PrenumeEntry.Text;
                 _client.Telefon = TelefonEntry.Text;
@@ -69,7 +66,7 @@ namespace Mobil
                 if (success)
                 {
                     await DisplayAlert("Succes", "Clientul a fost actualizat!", "OK");
-                    await Navigation.PopAsync(); // Întoarce-te la lista de clienți
+                    await Navigation.PopAsync(); 
                 }
                 else
                 {

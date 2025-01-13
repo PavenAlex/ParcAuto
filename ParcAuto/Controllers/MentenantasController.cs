@@ -21,14 +21,13 @@ namespace ParcAuto.Controllers
             _context = context;
         }
 
-        // GET: api/Mentenantas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Mentenanta>>> GetMentenantas()
         {
             return await _context.Mentenantas.ToListAsync();
         }
 
-        // GET: api/Mentenantas/5
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Mentenanta>> GetMentenanta(int id)
         {
@@ -42,8 +41,7 @@ namespace ParcAuto.Controllers
             return mentenanta;
         }
 
-        // PUT: api/Mentenantas/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMentenanta(int id, Mentenanta mentenanta)
         {
@@ -73,8 +71,7 @@ namespace ParcAuto.Controllers
             return NoContent();
         }
 
-        // POST: api/Mentenantas
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPost]
         public async Task<ActionResult<Mentenanta>> PostMentenanta(Mentenanta mentenanta)
         {
@@ -84,7 +81,7 @@ namespace ParcAuto.Controllers
             return CreatedAtAction("GetMentenanta", new { id = mentenanta.ID_Mentenanta }, mentenanta);
         }
 
-        // DELETE: api/Mentenantas/5
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMentenanta(int id)
         {

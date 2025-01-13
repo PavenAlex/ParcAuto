@@ -21,14 +21,12 @@ namespace ParcAuto.Controllers
             _context = context;
         }
 
-        // GET: api/Rezervares
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Rezervare>>> GetRezervares()
         {
             return await _context.Rezervares.ToListAsync();
         }
 
-        // GET: api/Rezervares/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Rezervare>> GetRezervare(int id)
         {
@@ -42,8 +40,7 @@ namespace ParcAuto.Controllers
             return rezervare;
         }
 
-        // PUT: api/Rezervares/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRezervare(int id, Rezervare rezervare)
         {
@@ -73,8 +70,7 @@ namespace ParcAuto.Controllers
             return NoContent();
         }
 
-        // POST: api/Rezervares
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPost]
         public async Task<ActionResult<Rezervare>> PostRezervare(Rezervare rezervare)
         {
@@ -84,7 +80,7 @@ namespace ParcAuto.Controllers
             return CreatedAtAction("GetRezervare", new { id = rezervare.ID_Rezervare }, rezervare);
         }
 
-        // DELETE: api/Rezervares/5
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRezervare(int id)
         {
