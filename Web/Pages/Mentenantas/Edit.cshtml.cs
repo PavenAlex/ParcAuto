@@ -22,7 +22,7 @@ namespace Web.Pages.Mentenantas
 
         [BindProperty]
         public Mentenanta Mentenanta { get; set; } = default!;
-        public string VehiculNume { get; set; } = string.Empty;  // Adăugăm o proprietate pentru numele vehiculului
+        public string VehiculNume { get; set; } = string.Empty;  
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -31,7 +31,6 @@ namespace Web.Pages.Mentenantas
                 return NotFound();
             }
 
-            // Căutăm mentenanța
             var mentenanta = await _context.Mentenantas
                 .FirstOrDefaultAsync(m => m.ID_Mentenanta == id);
 
@@ -40,16 +39,13 @@ namespace Web.Pages.Mentenantas
                 return NotFound();
             }
 
-            // Setăm mentenanța în model
             Mentenanta = mentenanta;
 
-            // Căutăm vehiculul asociat
             var vehicul = await _context.Vehicles
                 .FirstOrDefaultAsync(v => v.ID_Vehicul == Mentenanta.ID_Vehicul);
 
             if (vehicul != null)
             {
-                // Construim numele vehiculului
                 VehiculNume = $"{vehicul.Marca} {vehicul.Model}";
             }
 
@@ -63,7 +59,6 @@ namespace Web.Pages.Mentenantas
                 return Page();
             }
 
-            // Actualizăm doar câmpurile permise: Tip_Interventie, Data_Programare și Cost_Estimativ
             _context.Attach(Mentenanta).State = EntityState.Modified;
 
             try

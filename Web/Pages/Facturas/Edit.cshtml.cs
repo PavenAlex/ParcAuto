@@ -39,7 +39,6 @@ namespace Web.Pages.Facturas
 
             Factura = factura;
 
-            // Obține detalii pentru client și vehicul
             var rezervare = await _context.Rezervares.FirstOrDefaultAsync(r => r.ID_Rezervare == Factura.ID_Rezervare);
             if (rezervare != null)
             {
@@ -66,7 +65,6 @@ namespace Web.Pages.Facturas
                 return Page();
             }
 
-            // Actualizează doar Status_Plata
             var facturaToUpdate = await _context.Facturas.FirstOrDefaultAsync(f => f.ID_Factura == Factura.ID_Factura);
             if (facturaToUpdate == null)
             {

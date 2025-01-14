@@ -8,7 +8,6 @@
 <h1>Delete</h1>
 
 <div class="text-danger">
-    <!-- Afișează doar primul mesaj de eroare din ModelState -->
     @if (ViewData.ModelState.Values.SelectMany(v => v.Errors).Any())
     {
         <p>@ViewData.ModelState.Values.SelectMany(v => v.Errors).First().ErrorMessage</p>

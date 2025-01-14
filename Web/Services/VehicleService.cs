@@ -9,7 +9,6 @@ public class VehicleService
         _httpClient = httpClient;
     }
 
-    // Preia lista de vehicule
     public async Task<List<Vehicle>> GetVehiclesAsync()
     {
         var response = await _httpClient.GetAsync("https://localhost:7280/api/vehicles");
@@ -17,7 +16,6 @@ public class VehicleService
         return await response.Content.ReadFromJsonAsync<List<Vehicle>>();
     }
 
-    // Adaugă un vehicul
     public async Task<Vehicle> AddVehicleAsync(Vehicle vehicle)
     {
         var response = await _httpClient.PostAsJsonAsync("https://localhost:7280/api/vehicles", vehicle);
@@ -25,7 +23,6 @@ public class VehicleService
         return await response.Content.ReadFromJsonAsync<Vehicle>();
     }
 
-    // Preia un vehicul după ID
     public async Task<Vehicle> GetVehicleByIdAsync(int id)
     {
         var response = await _httpClient.GetAsync($"https://localhost:7280/api/vehicles/{id}");

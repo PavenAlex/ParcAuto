@@ -40,14 +40,13 @@ namespace Web.Pages.Rezervares
             {
                 Rezervare = rezervare;
 
-                // Obține numele și prenumele clientului
+
                 var client = await _context.Clients.FirstOrDefaultAsync(c => c.ID_Client == rezervare.ID_Client);
                 if (client != null)
                 {
                     NumePrenumeClient = $"{client.Nume} {client.Prenume}";
                 }
 
-                // Obține marca și modelul vehiculului
                 var vehicul = await _context.Vehicles.FirstOrDefaultAsync(v => v.ID_Vehicul == rezervare.ID_Vehicul);
                 if (vehicul != null)
                 {
@@ -64,36 +63,36 @@ namespace Web.Pages.Rezervares
                 return NotFound();
             }
 
-            // Verificăm dacă există o factură asociată cu ID_Rezervare
+
             var facturaExistenta = await _context.Facturas
                 .FirstOrDefaultAsync(f => f.ID_Rezervare == id);
 
             if (facturaExistenta != null)
             {
-                // Dacă există factură, adăugăm un mesaj de eroare specific
+
                 ModelState.AddModelError(string.Empty, "Nu puteți șterge această rezervare deoarece există o factură asociată.");
 
-                // Reîncarcă datele necesare pentru a le afișa în pagină
+
                 var rezervare = await _context.Rezervares.FirstOrDefaultAsync(m => m.ID_Rezervare == id);
                 if (rezervare != null)
                 {
                     Rezervare = rezervare;
 
-                    // Obține numele și prenumele clientului
+
                     var client = await _context.Clients.FirstOrDefaultAsync(c => c.ID_Client == rezervare.ID_Client);
                     if (client != null)
                     {
                         NumePrenumeClient = $"{client.Nume} {client.Prenume}";
                     }
 
-                    // Obține marca și modelul vehiculului
+
                     var vehicul = await _context.Vehicles.FirstOrDefaultAsync(v => v.ID_Vehicul == rezervare.ID_Vehicul);
                     if (vehicul != null)
                     {
                         MarcaModelVehicul = $"{vehicul.Marca} {vehicul.Model}";
                     }
                 }
-                return Page(); // Returnează pagina cu datele și mesajul de eroare
+                return Page(); 
             }
 
             var rezervareToDelete = await _context.Rezervares.FindAsync(id);

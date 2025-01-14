@@ -24,10 +24,8 @@ namespace Web.Pages.Mentenantas
 
         public async Task OnGetAsync()
         {
-            // Obține lista de mentenanțe
             Mentenanta = await _context.Mentenantas.ToListAsync();
 
-            // Obține vehiculele și creează un dicționar cu ID_Vehicul -> "Marca Model"
             Vehicule = await _context.Vehicles
                                     .ToDictionaryAsync(v => v.ID_Vehicul, v => $"{v.Marca} {v.Model}");
 

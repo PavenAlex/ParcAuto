@@ -47,24 +47,20 @@ namespace Web.Pages.Clients
                 return NotFound();
             }
 
-            // Verificăm dacă clientul se află în tabelul Rezervari
             var rezervari = await _context.Rezervares
                 .Where(r => r.ID_Client == id)
                 .ToListAsync();
 
             if (rezervari.Any())
             {
-                // Dacă există rezervări asociate, adăugăm un mesaj de eroare
                 ModelState.AddModelError(string.Empty, "Nu puteți șterge acest client deoarece există rezervări asociate.");
 
-                // Încarcăm din nou clientul în caz de eroare
                 var client = await _context.Clients.FirstOrDefaultAsync(m => m.ID_Client == id);
                 if (client != null)
                 {
                     Client = client;
                 }
 
-                // Rămânem pe aceleași pagină pentru a afișa eroarea și datele clientului
                 return Page();
             }
 

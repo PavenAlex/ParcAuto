@@ -23,12 +23,11 @@ namespace Web.Pages.Facturas
 
         public IActionResult OnGet()
         {
-            // Populează lista cu rezervări folosind interogări manuale pentru a asocia clienți și vehicule
             var rezervariData = _context.Rezervares
                 .Join(
                     _context.Clients,
-                    rezervare => rezervare.ID_Client,  // Cheia din tabelul Rezervares
-                    client => client.ID_Client,       // Cheia din tabelul Clients
+                    rezervare => rezervare.ID_Client,  
+                    client => client.ID_Client,       
                     (rezervare, client) => new
                     {
                         rezervare.ID_Rezervare,
@@ -39,8 +38,8 @@ namespace Web.Pages.Facturas
                 )
                 .Join(
                     _context.Vehicles,
-                    rezervareClient => rezervareClient.ID_Vehicul,  // Cheia din rezultatul anterior
-                    vehicul => vehicul.ID_Vehicul,                 // Cheia din tabelul Vehicles
+                    rezervareClient => rezervareClient.ID_Vehicul,  
+                    vehicul => vehicul.ID_Vehicul,                 
                     (rezervareClient, vehicul) => new
                     {
                         rezervareClient.ID_Rezervare,
@@ -49,7 +48,6 @@ namespace Web.Pages.Facturas
                 )
                 .ToList();
 
-            // Creează un SelectList pentru dropdown
             RezervariDropdown = new SelectList(
                 rezervariData,
                 "ID_Rezervare",
@@ -62,29 +60,27 @@ namespace Web.Pages.Facturas
         [BindProperty]
         public Factura Factura { get; set; } = default!;
 
-        // For more information, see https://aka.ms/RazorPagesCRUD.
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
-                // Re-populați dropdown-ul în caz de eroare de validare
                 OnGet();
                 return Page();
             }
 
-            // Verifică dacă există deja o factură pentru această rezervare
+
             var existingFactura = await _context.Facturas
                 .FirstOrDefaultAsync(f => f.ID_Rezervare == Factura.ID_Rezervare);
 
             if (existingFactura != null)
             {
-                // Dacă există, adaugă un mesaj de eroare
                 ModelState.AddModelError("Factura.ID_Rezervare", "Există deja o factură pentru această rezervare.");
-                OnGet(); // Re-populăm dropdown-ul cu datele corecte
+                OnGet(); 
                 return Page();
             }
 
-            // Obțineți data de start a rezervării selectate
+
             var rezervare = await _context.Rezervares
                 .FirstOrDefaultAsync(r => r.ID_Rezervare == Factura.ID_Rezervare);
 
@@ -95,10 +91,9 @@ namespace Web.Pages.Facturas
                 return Page();
             }
 
-            // Setează Data_Emitere să fie aceeași cu Data_Start
+
             Factura.Data_Emitere = rezervare.Data_Start;
 
-            // Adaugă factura și salvează
             _context.Facturas.Add(Factura);
             await _context.SaveChangesAsync();
 

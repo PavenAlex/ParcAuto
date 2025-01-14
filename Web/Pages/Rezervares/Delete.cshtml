@@ -7,11 +7,10 @@
 
 <h1>Delete</h1>
 
-<!-- Afișăm doar eroarea legată de factura asociată -->
+
 <div class="text-danger">
     @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
     {
-        // Verificăm dacă mesajul de eroare este legat de factura asociată
         if (error.ErrorMessage.Contains("factură asociată"))
         {
             <p>@error.ErrorMessage</p>

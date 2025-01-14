@@ -19,7 +19,7 @@ namespace Mobil
         {
             try
             {
-                var clients = await _clientService.GetClientsAsync(); /
+                var clients = await _clientService.GetClientsAsync(); 
                 ClientsList.ItemsSource = clients; 
             }
             catch (Exception ex)

@@ -21,7 +21,6 @@ namespace Web.Pages.Facturas
         [BindProperty]
         public FacturaViewModel Factura { get; set; } = default!;
 
-        // Clasa ViewModel pentru a include și detalii despre client și vehicul
         public class FacturaViewModel
         {
             public int ID_Factura { get; set; }
@@ -38,7 +37,6 @@ namespace Web.Pages.Facturas
                 return NotFound();
             }
 
-            // Căutăm factura pe baza ID-ului
             var factura = await _context.Facturas
                 .Where(f => f.ID_Factura == id)
                 .Select(f => new FacturaViewModel
@@ -47,7 +45,7 @@ namespace Web.Pages.Facturas
                     Data_Emitere = f.Data_Emitere,
                     Suma_Totala = f.Suma_Totala,
                     Status_Plata = f.Status_Plata,
-                    // Obținem clientul și vehiculul asociat pe baza ID-ului de rezervare
+
                     ClientVehicul =
                         _context.Rezervares
                             .Where(r => r.ID_Rezervare == f.ID_Rezervare)
@@ -70,7 +68,7 @@ namespace Web.Pages.Facturas
             }
             else
             {
-                Factura = factura; // Setăm factura cu detaliile suplimentare
+                Factura = factura; 
             }
 
             return Page();
@@ -83,14 +81,13 @@ namespace Web.Pages.Facturas
                 return NotFound();
             }
 
-            // Găsește factura
+
             var factura = await _context.Facturas.FindAsync(id);
             if (factura == null)
             {
                 return NotFound();
             }
 
-            // Șterge factura direct, fără a verifica existența unei rezervări asociate
             _context.Facturas.Remove(factura);
             await _context.SaveChangesAsync();
 

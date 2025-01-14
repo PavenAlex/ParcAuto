@@ -19,7 +19,6 @@ namespace Web.Pages.Mentenantas
             _context = context;
         }
 
-        // Lista de vehicule pentru dropdown
         public List<SelectListItem> Vehicule { get; set; } = new List<SelectListItem>();
 
         [BindProperty]
@@ -27,7 +26,6 @@ namespace Web.Pages.Mentenantas
 
         public IActionResult OnGet()
         {
-            // Populează lista de vehicule
             Vehicule = _context.Vehicles
                                .Select(v => new SelectListItem
                                {
@@ -42,7 +40,6 @@ namespace Web.Pages.Mentenantas
         {
             if (!ModelState.IsValid)
             {
-                // Refacem lista vehiculelor dacă există erori de validare
                 Vehicule = _context.Vehicles
                                    .Select(v => new SelectListItem
                                    {

@@ -10,7 +10,6 @@ public class ClientService
         _httpClient = httpClient;
     }
 
-    // Retrieve the list of clients
     public async Task<List<Client>> GetClientsAsync()
     {
         var response = await _httpClient.GetAsync("https://localhost:7280/api/clients");
@@ -18,7 +17,7 @@ public class ClientService
         return await response.Content.ReadFromJsonAsync<List<Client>>();
     }
 
-    // Add a new client
+
     public async Task<Client> AddClientAsync(Client client)
     {
         var response = await _httpClient.PostAsJsonAsync("https://localhost:7280/api/clients", client);
@@ -26,7 +25,7 @@ public class ClientService
         return await response.Content.ReadFromJsonAsync<Client>();
     }
 
-    // Retrieve a client by ID
+
     public async Task<Client> GetClientByIdAsync(int id)
     {
         var response = await _httpClient.GetAsync($"https://localhost:7280/api/clients/{id}");

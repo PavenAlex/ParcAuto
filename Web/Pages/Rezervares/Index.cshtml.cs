@@ -20,19 +20,15 @@ namespace Web.Pages.Rezervares
         }
 
         public IList<Rezervare> Rezervare { get; set; } = default!;
-        public Dictionary<int, string> Clients { get; set; } = new Dictionary<int, string>();  // Dicționar pentru clienți
-        public Dictionary<int, string> Vehicles { get; set; } = new Dictionary<int, string>(); // Dicționar pentru vehicule
+        public Dictionary<int, string> Clients { get; set; } = new Dictionary<int, string>();  
+        public Dictionary<int, string> Vehicles { get; set; } = new Dictionary<int, string>(); 
 
         public async Task OnGetAsync()
         {
-            // Obține lista de rezervări
             Rezervare = await _context.Rezervares.ToListAsync();
 
-            // Populează dicționarul cu clienți (ID_Client -> "Nume Prenume")
             Clients = await _context.Clients
                                     .ToDictionaryAsync(c => c.ID_Client, c => $"{c.Nume} {c.Prenume}");
-
-            // Populează dicționarul cu vehicule (ID_Vehicul -> "Marca Model")
             Vehicles = await _context.Vehicles
                                     .ToDictionaryAsync(v => v.ID_Vehicul, v => $"{v.Marca} {v.Model}");
         }

@@ -14,7 +14,6 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <!-- Dropdown pentru Client -->
             <div class="form-group">
                 <label asp-for="Rezervare.ID_Client" class="control-label">Client</label>
                 <select asp-for="Rezervare.ID_Client" class="form-control" asp-items="Model.Clients">
@@ -23,7 +22,6 @@
                 <span asp-validation-for="Rezervare.ID_Client" class="text-danger"></span>
             </div>
 
-            <!-- Dropdown pentru Vehicul -->
             <div class="form-group">
                 <label asp-for="Rezervare.ID_Vehicul" class="control-label">Vehicul</label>
                 <select asp-for="Rezervare.ID_Vehicul" class="form-control" asp-items="Model.Vehicles">
@@ -45,7 +43,6 @@
             </div>
 
 
-            <!-- Câmpul pentru Status -->
             <div class="form-group">
                 <label asp-for="Rezervare.Status" class="control-label">Status</label>
                 <select asp-for="Rezervare.Status" class="form-control" asp-items="Model.StatusOptions">
@@ -54,7 +51,6 @@
                 <span asp-validation-for="Rezervare.Status" class="text-danger"></span>
             </div>
 
-            <!-- Butonul de submit -->
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

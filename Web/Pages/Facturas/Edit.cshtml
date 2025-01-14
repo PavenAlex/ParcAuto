@@ -12,7 +12,6 @@
 
 <div class="row">
     <div class="col-md-6">
-        <!-- Afișare detalii client și vehicul -->
         <h5>Client: @Model.ClientName</h5>
         <h5>Vehicul: @Model.VehicleDetails</h5>
 
@@ -20,7 +19,6 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Factura.ID_Factura" />
 
-            <!-- Dropdown pentru Status_Plata -->
             <div class="form-group">
                 <label asp-for="Factura.Status_Plata" class="control-label">Status</label>
                 <select asp-for="Factura.Status_Plata" class="form-control">

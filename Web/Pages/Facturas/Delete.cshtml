@@ -8,7 +8,6 @@
 <h1>Delete</h1>
 
 <div class="text-danger">
-    <!-- Afișează toate mesajele de eroare din ModelState -->
     @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
     {
         <p>@error.ErrorMessage</p>
